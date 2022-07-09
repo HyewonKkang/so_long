@@ -16,6 +16,8 @@ int  check_valid_move(t_game *game, int x, int y)
 	{
 		if (game->collected == game->map_textures.collectible)
 			close_game(game);
+		else
+			ft_putstr_fd("There's still a collectible left!\n", 1);
 	}
 	return (1);
 }
@@ -26,6 +28,7 @@ int check_player_move(int keycode, t_game *game)
 	int y;
 	int flag;
 
+	flag = 1;
 	x = game->position.x;
 	y = game->position.y;
 	if (keycode == KEY_W)
@@ -36,11 +39,13 @@ int check_player_move(int keycode, t_game *game)
 		x--;
 	else if (keycode == KEY_D)
 		x++;
-
-	flag = check_valid_move(game, x, y);
+	else
+		flag = 0;
+	if (flag)
+		flag = check_valid_move(game, x, y);
 	if (flag)
 	{
-		if (game->map[game->position.x][game->position.y] \
+		if (game->map[game->position.y][game->position.x] \
 		== 'E')
 			flag = 2;
 		game->position.x = x;

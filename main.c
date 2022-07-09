@@ -14,14 +14,28 @@ int close_game(t_game *game)
 	mlx_destroy_image(game->mlx_ptr, game->img.img_ptr);
 	mlx_destroy_window(game->mlx_ptr, game->win_ptr);
 	free(game->mlx_ptr);
+	ft_putstr_fd("--------------------\n", 1);
+	ft_putstr_fd(" The game is over !\n", 1);
+	ft_putstr_fd("--------------------\n", 1);
 	exit(0);
 
 }
 
 int	close_game_with_error(int type)
 {
+	ft_putstr_fd("[Error]\n", 1);
 	if (type == 0)
-		ft_putstr_fd("Error\n[Invalid Map]\n", 1);
+		ft_putstr_fd("- The map must be composed of only 5 possible characters(0, 1, C, E, P) !\n", 1);
+	else if (type == 1)
+		ft_putstr_fd("- There must be only one player !\n", 1);
+	else if (type == 2)
+		ft_putstr_fd("- There must be only one exit !\n", 1);
+	else if (type == 3)
+		ft_putstr_fd("- The map must be rectangular !\n", 1);
+	else if (type == 4)
+		ft_putstr_fd("- The map must be closed/surrounded by walls !\n", 1);
+	else if (type == 5)
+		ft_putstr_fd("- Map must have at least one exit, one collectible, and one starting position !\n", 1);
 	exit(0);
 }
 

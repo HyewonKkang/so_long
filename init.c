@@ -71,7 +71,7 @@ void	init_map(t_game *game, int fd)
 		free(line);
 		i++;
 	}
-	// get_map_col(game, line, i);
-	// draw_map(game, line, i);
-	// free(line);
+	ft_putstr_fd("--------------------\n", 1);
+	ft_putstr_fd("    Game start !\n", 1);
+	ft_putstr_fd("--------------------\n", 1);
 }

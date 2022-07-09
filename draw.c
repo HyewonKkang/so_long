@@ -8,9 +8,6 @@ void	draw_pixels_of_tile(t_game *game, char texture)
 	if (texture == '1')
 		game->img.img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, \
 		"imgs/wall.xpm", &w, &h);
-	// else if (texture == '0')
-	// 	game->img.img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, \
-	// 	"imgs/space.xpm", &w, &h);
 	else if (texture == 'C')
 		game->img.img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, \
 		"imgs/collectible.xpm", &w, &h);

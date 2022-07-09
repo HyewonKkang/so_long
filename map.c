@@ -9,13 +9,13 @@ void	set_map_value(t_game *game, char component)
 	else if (component == 'P')
 	{
 		if (game->map_textures.player > 0)
-			close_game_with_error(0);
+			close_game_with_error(1);
 		game->map_textures.player = 1;
 	}
 	else if (component == 'E')
 	{
 		if (game->map_textures.exit > 0)
-			close_game_with_error(0);
+			close_game_with_error(2);
 		game->map_textures.exit = 1;
 	}
 }
@@ -28,16 +28,16 @@ void	check_map_line(t_game *game, char *line, int check_wall)
 	i = -1;
 	len = ft_strlen(line);
 	if (len != game->width)
-			close_game_with_error(0);
+			close_game_with_error(3);
 	while (line[++i])
 	{
 		if ((i == 0 || i == len - 1) && line[i] != '1')
 		{
-			close_game_with_error(0);
+			close_game_with_error(4);
 		}
 		if (check_wall && line[i] != '1')
 		{
-			close_game_with_error(0);
+			close_game_with_error(4);
 		}
 		if (line[i] != '1' && line[i] != '0' && line[i] != 'P' && \
 		line[i] != 'C' && line[i] != 'E')
@@ -51,11 +51,11 @@ void	check_map_line(t_game *game, char *line, int check_wall)
 void check_map_components(t_game *game)
 {
 	if (!game->map_textures.exit)
-		close_game_with_error(0);
+		close_game_with_error(5);
 	if (!game->map_textures.player)
-		close_game_with_error(0);
+		close_game_with_error(5);
 	if (!game->map_textures.collectible)
-		close_game_with_error(0);
+		close_game_with_error(5);
 }
 
 void get_map(t_game *game, int fd)
@@ -81,8 +81,6 @@ void get_map(t_game *game, int fd)
 		h += 1;
 		free(line);
 	}
-	// check_map_line(game, line, 1);
-	// free(line);
 	game->height = h;
 	check_map_components(game);
 }
