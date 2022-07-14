@@ -11,7 +11,7 @@ $(NAME) : $(OBJS)
 	ar rc $@ $^
 
 %.o : %.c
-	arch -x86_64 $(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f *.o

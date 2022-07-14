@@ -1,4 +1,16 @@
-#include "include/so_long.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hykang <hykang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/13 13:38:44 by hykang            #+#    #+#             */
+/*   Updated: 2022/07/13 14:52:46 by hykang           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../include/so_long.h"
 
 void	set_map_value(t_game *game, char component)
 {
@@ -23,12 +35,12 @@ void	set_map_value(t_game *game, char component)
 void	check_map_line(t_game *game, char *line, int check_wall)
 {
 	int	i;
-	int len;
+	int	len;
 
 	i = -1;
 	len = ft_strlen(line);
 	if (len != game->width)
-			close_game_with_error(3);
+		close_game_with_error(3);
 	while (line[++i])
 	{
 		if ((i == 0 || i == len - 1) && line[i] != '1')
@@ -40,7 +52,7 @@ void	check_map_line(t_game *game, char *line, int check_wall)
 			close_game_with_error(4);
 		}
 		if (line[i] != '1' && line[i] != '0' && line[i] != 'P' && \
-		line[i] != 'C' && line[i] != 'E')
+				line[i] != 'C' && line[i] != 'E')
 		{
 			close_game_with_error(0);
 		}
@@ -48,7 +60,7 @@ void	check_map_line(t_game *game, char *line, int check_wall)
 	}
 }
 
-void check_map_components(t_game *game)
+void	check_map_components(t_game *game)
 {
 	if (!game->map_textures.exit)
 		close_game_with_error(5);
@@ -58,7 +70,7 @@ void check_map_components(t_game *game)
 		close_game_with_error(5);
 }
 
-void get_map(t_game *game, int fd)
+void	get_map(t_game *game, int fd)
 {
 	char	*line;
 	int		h;
@@ -68,7 +80,7 @@ void get_map(t_game *game, int fd)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			break;
+			break ;
 		if (h == 0)
 		{
 			game->width = ft_strlen(line);
@@ -79,7 +91,6 @@ void get_map(t_game *game, int fd)
 			check_map_line(game, line, 0);
 		}
 		h += 1;
-		free(line);
 	}
 	game->height = h;
 	check_map_components(game);
