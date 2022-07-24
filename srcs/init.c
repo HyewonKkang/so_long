@@ -6,7 +6,7 @@
 /*   By: hykang <hykang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 13:38:30 by hykang            #+#    #+#             */
-/*   Updated: 2022/07/13 15:09:57 by hykang           ###   ########.fr       */
+/*   Updated: 2022/07/16 20:03:03 by hykang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,9 @@ void	init_param(t_game *game)
 void	get_map_col(t_game *game, char *line, int l)
 {
 	int		i;
-	char	*arr;
 
 	i = 0;
-	arr = (char *)malloc(sizeof(char) * game->width);
+	game->map[l] = (char *)malloc(sizeof(char) * game->width);
 	while (line[i])
 	{
 		if (line[i] == 'P')
@@ -53,10 +52,9 @@ void	get_map_col(t_game *game, char *line, int l)
 			game->position.x = i;
 			game->position.y = l;
 		}
-		arr[i] = line[i];
+		game->map[l][i] = line[i];
 		i++;
 	}
-	game->map[l] = arr;
 }
 
 int	check_last_line(char *line)

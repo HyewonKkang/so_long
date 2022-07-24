@@ -6,7 +6,7 @@
 /*   By: hykang <hykang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 13:38:36 by hykang            #+#    #+#             */
-/*   Updated: 2022/07/13 15:06:31 by hykang           ###   ########.fr       */
+/*   Updated: 2022/07/18 20:16:26 by hykang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	close_game(t_game *game, int type)
 	}
 	free(game->map);
 	mlx_destroy_image(game->mlx_ptr, game->img.img_ptr);
-	mlx_destroy_window(game->mlx_ptr, game->win_ptr);
 	free(game->mlx_ptr);
 	if (type)
 	{
@@ -32,7 +31,7 @@ int	close_game(t_game *game, int type)
 		ft_putstr_fd(" The game is over !\n", 1);
 		ft_putstr_fd("--------------------\n", 1);
 	}
-	exit(0);
+	exit (0);
 }
 
 int	close_game_with_error(int type)
@@ -56,7 +55,9 @@ int	close_game_with_error(int type)
 		ft_putstr_fd("- Map must have at least one exit, one collectible, ", 1);
 		ft_putstr_fd("and one starting position !\n", 1);
 	}
-	exit(0);
+	else if (type == -1)
+		ft_putstr_fd("- The file does not exist.", 1);
+	exit(1);
 }
 
 void	print_move(char c)
@@ -77,6 +78,8 @@ int	main(int argc, char *argv[])
 		return (0);
 	}
 	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+		close_game_with_error(-1);
 	init_param(&game);
 	get_map(&game, fd);
 	init_minilibx(&game);

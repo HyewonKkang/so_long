@@ -6,7 +6,7 @@
 #    By: hykang <hykang@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 13:39:25 by hykang            #+#    #+#              #
-#    Updated: 2022/07/13 14:07:08 by hykang           ###   ########.fr        #
+#    Updated: 2022/07/16 19:26:32 by hykang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ $(NAME): $(SRCS)
 	$(MAKE) -C $(GNL_DIR) all
 	$(CC) $(CFLAGS) -L$(MLX_DIR) -l$(MLX_NAME) \
 		-L$(GNL_DIR) -l$(GNL_NAME) \
-		-framework OpenGL -framework AppKit $^ -o $@
+		-framework OpenGL -framework AppKit -g $^ -o $@
 
 %.o : %.c
 	$(CC) $(CFLAGS) -I$(MLX_DIR) -I$(GNL_DIR) -c $< -o $@

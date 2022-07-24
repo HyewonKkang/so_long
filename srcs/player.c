@@ -6,7 +6,7 @@
 /*   By: hykang <hykang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 13:38:52 by hykang            #+#    #+#             */
-/*   Updated: 2022/07/13 15:00:54 by hykang           ###   ########.fr       */
+/*   Updated: 2022/07/16 20:27:26 by hykang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,20 +75,18 @@ void	passing_exit(t_game *game, int prev_x, int prev_y)
 
 void	draw_updated_player(t_game *game, int prev_x, int prev_y)
 {
-	t_img	img;
 	int		h;
 	int		w;
 
-	img = game->img;
-	img.data = (int *)mlx_get_data_addr(game->position.img_ptr, &img.bpp, \
-			&img.size_line, &img.endian);
+	game->img.data = (int *)mlx_get_data_addr(game->position.img_ptr, \
+	&game->img.bpp, &game->img.size_line, &game->img.endian);
 	h = 0;
 	while (h < TILES)
 	{
 		w = 0;
 		while (w < TILES)
 		{
-			img.data[h * TILES + w] = 0x000000;
+			game->img.data[h * TILES + w] = 0x000000;
 			w++;
 		}
 		h++;

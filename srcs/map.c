@@ -6,7 +6,7 @@
 /*   By: hykang <hykang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 13:38:44 by hykang            #+#    #+#             */
-/*   Updated: 2022/07/13 14:52:46 by hykang           ###   ########.fr       */
+/*   Updated: 2022/07/16 20:25:03 by hykang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void	get_map(t_game *game, int fd)
 			check_map_line(game, line, 0);
 		}
 		h += 1;
+		free(line);
 	}
 	game->height = h;
 	check_map_components(game);
